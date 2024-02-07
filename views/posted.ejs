@@ -4,21 +4,29 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="/stylesheet/style.css">
 </head>
 <body>
-    <h1> All Post </h1>
-    <% if (post.length>0){ %>
-        
-        <% post.forEach(items => { %>
-         <p><%= items %></p>
+    <div class="pForm">
+        <h1> All Post </h1>
+        <form action="/home" method="get">
+            <button type="submit" >Home</button>
+        </form>
+        <% if (post.length > 0) { %>
+        <% post.forEach((item, index) => { %>
+            <div >
+                <p id="post_<%= index %>"><%= item %></p><br>
+                <form action="/edit/<%= index %>" method="get" style="display: inline;">
+                    <button type="submit">Edit</button>
+                </form>
+                <form action="/delete/<%= index %>" method="post" style="display: inline;">
+                    <button type="submit">Delete</button>
+                </form>
+            </div>
         <% }); %>
-
-        
-
-       
-    <%} else {%>
-         <h1>No post available</h1>
-   <% } %>
-    
+        <%} else {%>
+        <h1>No post available</h1>
+        <% } %>
+    </div>
 </body>
 </html>
